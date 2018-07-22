@@ -1,3 +1,6 @@
-module.exports = {
-  mode: 'none',
-};
+module.exports = ({ mode }) => ({
+  mode,
+  output: {
+    filename: 'bundle.js',
+  },
+});
