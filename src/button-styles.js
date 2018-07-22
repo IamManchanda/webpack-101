@@ -1,10 +1,6 @@
 const makeColorStyle = (color) => `color: ${color}`;
-const redButton = makeColorStyle('red');
-const blueButton = makeColorStyle('blue');
-const greenButton = makeColorStyle('green');
+const redButtonStyle = makeColorStyle('red');
+const blueButtonStyle = makeColorStyle('blue');
 
-exports.redButton = redButton;
-exports.blueButton = blueButton;
-exports.greenButton = greenButton;
-
-module.exports = makeColorStyle;
+export { redButtonStyle, blueButtonStyle };
+export default makeColorStyle;

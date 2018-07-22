@@ -1,13 +1,18 @@
-import nav from './nav';
-import center, { top, bottom } from './footer';
+import './footer.css';
 import makeButton from './button';
-import makeColorStyle from './button-styles';
+import footer, { top, bottom } from './footer';
+import makeColorStyle, { redButtonStyle, blueButtonStyle } from './button-styles';
 
-console.log(
-  nav(),
-  top,
-  bottom,
-  center,
-  makeButton('Yo'),
-  makeColorStyle('cyan'),
-);
+const button = makeButton('Yay a Button!');
+button.style = makeColorStyle('HotPink');
+document.body.appendChild(button);
+
+top.innerText = 'Top of Footer';
+top.style = redButtonStyle;
+footer.appendChild(top);
+
+bottom.innerText = 'Bottom of Footer';
+bottom.style = blueButtonStyle;
+footer.appendChild(bottom);
+
+document.body.appendChild(footer);
