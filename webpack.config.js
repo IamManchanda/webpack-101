@@ -1,16 +1,31 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackMerge = require("webpack-merge");
-// 8:42 - HMR with CSS
 
 const modeConfig = (env) => require(`./tooling/webpack.${env}`)(env);
+const presetConfig = require('./tooling/loadPresets');
 
 module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
   return webpackMerge(
     {
       mode,
+      module: {
+        rules: [
+          {
+            test: /\.(jpe?g|png|svg)$/,
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 5000,
+                },
+              },
+            ],
+          },
+        ],
+      },
       output: {
-        filename: 'script.js',
+        filename: 'bundle.js',
       },
       plugins: [
         new HtmlWebpackPlugin(),
@@ -18,5 +33,6 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
       ],
     },
     modeConfig(mode),
+    presetConfig({ mode, presets }),
   );
 };
